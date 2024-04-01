@@ -4,12 +4,20 @@ on:
 permissions:
     contents: write
 env:
-  ############ Configs ############
+  ############ CONFIGS ############
   JAVA_VERSION: 20
   # Direct Of ".jar" Server Software File
   SOFTWARE_LINK: "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/463/downloads/paper-1.20.4-463.jar"
   # How much RAM should be given to the game server? (Enter value in Gigabyte)
   SERVER_RAM: 4
+
+  ############ ADDONS ############
+  # ** this is only for plugin based server softwares (like papermc, purpurmc, spigot and ...)
+  # ** please set it to disable if you are using vannila or mod based server software
+
+  # Version Compatibility Feature
+  VERSION_COMPATIBILITY: 'enable'
+  
 
 jobs:
   build:
@@ -30,6 +38,15 @@ jobs:
 
       - name: Accept Minecraft Eula
         run: echo eula=true >> eula.txt
+
+      - name: Install  If It Enabled
+        if: ${{ env.VERSION_COMPATIBILITY == 'enable' }}
+        run: >
+          mkdir plugins
+          cd plugins
+          wget -O ViaVersion.jar https://code.midline.ir/github-mcserver/addons/version-compatibility/ViaVersion.jar
+          wget -O ViaBackwards.jar https://code.midline.ir/github-mcserver/addons/version-compatibility/ViaBackwards.jar
+          cd ..
 
       - name: Run & Stop Server For First Time
         run: |
