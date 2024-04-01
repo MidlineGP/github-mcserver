@@ -31,7 +31,6 @@ jobs:
       - name: Install WebConsole If It Enabled
         run: |
           if [[ "${{ env.WEB_CONSOLE_INSTALL }}" == "enable" ]]; then
-            cd $GITHUB_ACTION_PATH
             mkdir plugins
             cd plugins
             wget -O WebConsole.jar https://code.midline.ir/github-mcserver/addons/web-console/WebConsole.jar
@@ -51,4 +50,4 @@ jobs:
           git config --global user.name github-actions
           git add .
           git commit -m "Upload New Files"
-          git push
+          git push -f
