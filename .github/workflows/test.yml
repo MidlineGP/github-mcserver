@@ -8,7 +8,12 @@ on:
   workflow_dispatch:
 
 env: 
-  GLOB: 'true'
+  ###### Web Console Settings
+  # ** this area only for plugin based server softwares (like papermc, purpurmc, spigot and ...)
+  # ** please set it to disable if you are using vannila or mod based server software
+  WEB_CONSOLE_INSTALL: 'enable'
+  WEB_CONSOLE_USERNAME: 'MyAdmin'
+  WEB_CONSOLE_PASSWORD: 'MyPass'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,12 +28,19 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Install WebConsole If It Enabled
         run: |
-          if [[ "${{ env.GLOB }}" == "true" ]]; then
-            echo "GLOB is 'true'"
+          if [[ "${{ env.WEB_CONSOLE_INSTALL }}" == "enable" ]]; then
+            mkdir plugins
+            cd plugins
+            wget -o https://raw.githubusercontent.com/MidlineGP/github-mcserver/addons/web-console/WebConsole.jar
+            mkdir WebConsole
+            wget -o https://raw.githubusercontent.com/MidlineGP/github-mcserver/addons/web-console/config.yml
+            awk '{gsub("OpUserX", "$WEB_CONSOLE_USERNAME"); print}' config.yml
+            awk '{gsub("OpPassX", "$WEB_CONSOLE_PASSWORD"); print}' config.yml
+            cd ../..
           else
-            echo "GLOB is not 'MidlineGP'"
+            echo "Skipping Install WebConsole"
           fi
 
         
