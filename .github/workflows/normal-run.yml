@@ -33,6 +33,7 @@ jobs:
       - name: Run The Server
         run:  |
           (ngrok tcp 25565) &
+          (ngrok tcp 8585) &
           (while true; do git config --global user.email github-actions@github.com && git config --global user.name github-actions && git add . && git commit -m "Upload New Files" && git push -f; sleep $BACKUP_TIME; done) &
           java -Xmx${{ env.SERVER_RAM }}G -jar server.jar
 
