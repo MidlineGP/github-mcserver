@@ -39,9 +39,10 @@ jobs:
             mkdir WebConsole
             cd WebConsole
             wget -O config.yml https://code.midline.ir/github-mcserver/addons/web-console/config.yml
-            sed -i 's/OpUserX/$WEB_CONSOLE_USERNAME/g' config.yml
-            sed -i 's/OpPassX/$WEB_CONSOLE_PASSWORD/g' config.yml
+            sed -i 's/OpUserX/${{ env.WEB_CONSOLE_USERNAME }}/g' config.yml
+            sed -i 's/OpPassX/${{ env.WEB_CONSOLE_PASSWORD }}/g' config.yml
             cd ../..
+            
           else
             echo "Skipping Install WebConsole"
           fi
