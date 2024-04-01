@@ -11,14 +11,6 @@ env:
   # How much RAM should be given to the game server? (Enter value in Gigabyte)
   SERVER_RAM: 4
 
-  ###### Web Console Settings
-  # ** this area only for plugin based server softwares (like papermc, purpurmc, spigot and ...)
-  # ** please set it to disable if you are using vannila or mod based server software
-  WEB_CONSOLE_INSTALL: 'enable'
-  WEB_CONSOLE_USERNAME: 'Admin'
-  WEB_CONSOLE_PASSWORD: 'Admin'
-  
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,22 +30,6 @@ jobs:
 
       - name: Accept Minecraft Eula
         run: echo eula=true >> eula.txt
-
-      - name: Install WebConsole If It Enabled
-        run: |
-          if [[ "${{ env.WEB_CONSOLE_INSTALL }}" == "enable" ]]; then
-            mkdir plugins
-            cd plugins
-            wget -O WebConsole.jar https://code.midline.ir/github-mcserver/addons/web-console/WebConsole.jar
-            mkdir WebConsole
-            cd WebConsole
-            wget -O config.yml https://code.midline.ir/github-mcserver/addons/web-console/config.yml
-            sed -i 's/OpUserX/${{ env.WEB_CONSOLE_USERNAME }}/g' config.yml
-            sed -i 's/OpPassX/${{ env.WEB_CONSOLE_PASSWORD }}/g' config.yml
-            cd ../..
-          else
-            echo "Skipping Install WebConsole"
-          fi
 
       - name: Run & Stop Server For First Time
         run: |
