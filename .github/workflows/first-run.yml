@@ -4,18 +4,20 @@ on:
 permissions:
     contents: write
 env:
-  ############ CONFIGS ############
+  ######################## CONFIGS ########################
   JAVA_VERSION: 20
   # Direct Of ".jar" Server Software File
   SOFTWARE_LINK: "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/463/downloads/paper-1.20.4-463.jar"
   # How much RAM should be given to the game server? (Enter value in Gigabyte)
   SERVER_RAM: 4
 
-  ############ ADDONS ############
+  ######################## ADDONS ########################
   # ** this is only for plugin based server softwares (like papermc, purpurmc, spigot and ...)
   # ** please set it to disable if you are using vannila or mod based server software
 
-  # Version Compatibility Feature
+  ############ Version Compatibility Feature
+  # ** this feature enables version compatibility for you mc server
+  # ** it makes your server joinable from version 1.8.x to 1.20.x
   VERSION_COMPATIBILITY: 'enable'
   
 
