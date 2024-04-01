@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env: 
-  GLOB: $GITHUB_REPOSITORY_OWNER
+  GLOB: 'true'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,10 +24,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ env.GLOB == 'MidlineGP' }}
         run: |
-          if [[ "${{ env.GLOB }}" == "MidlineGP" ]]; then
-            echo "GLOB is 'MidlineGP'"
+          if [[ "${{ env.GLOB }}" == "true" ]]; then
+            echo "GLOB is 'true'"
           else
             echo "GLOB is not 'MidlineGP'"
           fi
