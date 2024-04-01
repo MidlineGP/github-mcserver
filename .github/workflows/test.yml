@@ -24,10 +24,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ env.GLOB == "MidlineGP" }}
-        run: say hi 
+        if: ${{ env.GLOB == 'MidlineGP' }}
+        run: |
+          if [[ "${{ env.GLOB }}" == "MidlineGP" ]]; then
+            echo "GLOB is 'MidlineGP'"
+          else
+            echo "GLOB is not 'MidlineGP'"
+          fi
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script 2
-        if: ${{ env.GLOB == "MidlineGP2" }}
-        run: say no 
+        
