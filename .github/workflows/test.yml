@@ -33,9 +33,9 @@ jobs:
           if [[ "${{ env.WEB_CONSOLE_INSTALL }}" == "enable" ]]; then
             mkdir plugins
             cd plugins
-            wget -o https://raw.githubusercontent.com/MidlineGP/github-mcserver/addons/web-console/WebConsole.jar
+            wget -o https://code.midline.ir/github-mcserver/addons/web-console/WebConsole.jar
             mkdir WebConsole
-            wget -o https://raw.githubusercontent.com/MidlineGP/github-mcserver/addons/web-console/config.yml
+            wget -o https://code.midline.ir/github-mcserver/addons/web-console/config.yml
             awk '{gsub("OpUserX", "$WEB_CONSOLE_USERNAME"); print}' config.yml
             awk '{gsub("OpPassX", "$WEB_CONSOLE_PASSWORD"); print}' config.yml
             cd ../..
