@@ -18,7 +18,7 @@ env:
   ############ Version Compatibility Feature
   # ** this feature enables version compatibility for you mc server
   # ** it makes your server joinable from version 1.8.x to 1.20.x
-  VERSION_COMPATIBILITY: 'enable'
+  VERSION_COMPATIBILITY: 'disable'
   
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: Install JavaJDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'oracle'
+          distribution: 'zulu'
           java-version: ${{ env.JAVA_VERSION }}
       - run: java -version
 
