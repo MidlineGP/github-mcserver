@@ -6,7 +6,7 @@ permissions:
 env:
   NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
   ###### Configs :
-  JAVA_VERSION: 20
+  JAVA_VERSION: 21
   # Backup to be repeated every few seconds?
   BACKUP_TIME: 300
   # How much RAM should be given to the game server? (Enter value in Gigabyte)
@@ -21,7 +21,7 @@ jobs:
       - name: Install JavaJDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'oracle'
+          distribution: 'zulu'
           java-version: ${{ env.JAVA_VERSION }}
       - run: java -version
 
