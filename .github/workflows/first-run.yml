@@ -5,7 +5,7 @@ permissions:
     contents: write
 env:
   ######################## CONFIGS ########################
-  JAVA_VERSION: 20
+  JAVA_VERSION: 21
   # Direct Of ".jar" Server Software File
   SOFTWARE_LINK: "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/463/downloads/paper-1.20.4-463.jar"
   # How much RAM should be given to the game server? (Enter value in Gigabyte)
